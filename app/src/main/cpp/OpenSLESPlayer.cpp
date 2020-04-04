@@ -19,6 +19,12 @@ OpenSLESPlayer::OpenSLESPlayer(const char *path) {
 
 SLresult OpenSLESPlayer::createEngine() {
     //创建引擎对象
+    //1.对象地址，用于传出对象
+    //2.配置参数数量
+    //3.配置参数，枚举数组
+    //4.支持的接口数量
+    //5.具体的要支持的接口
+    //6.具体的要支持的接口时开放的还是关闭的
     SLresult result = slCreateEngine(&engineObject, 0, NULL, 0, NULL, NULL);
     if (result != SL_RESULT_SUCCESS) {
         LOGE("slCreateEngine failed,result=%d", result);

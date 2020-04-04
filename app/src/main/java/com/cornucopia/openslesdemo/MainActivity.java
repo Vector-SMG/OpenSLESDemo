@@ -20,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
     Button btn2=findViewById(R.id.btn2);
     String storeDir=FileUtils.queryStoreDir(this);
     final String pcmPath=storeDir+"/1.pcm";
-    Log.e(TAG,pcmPath);
+    final String recordPcmPath=storeDir+"/2.pcm";
+    Log.e(TAG,recordPcmPath);
     btn1.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if(new File(pcmPath).exists()){
-          openSLESHelper.playPcmByOpenSLES(pcmPath);
+          openSLESHelper.playPcmByOpenSLES(recordPcmPath);
+          openSLESHelper.recordVoiceToPcm(recordPcmPath,
+              44100,2,16);
         }
       }
     });
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     btn2.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         openSLESHelper.stopPlay();
+        //openSLESHelper.stopRecord();
       }
     });
 
